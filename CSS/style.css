@@ -86,7 +86,12 @@ main {
 .button:hover {
   color: white;
 }
+<<<<<<< Updated upstream
 /* seocnd page */
+=======
+/* <<<<<<< HEAD */
+/* page de creer groupe par boubker habib*/
+>>>>>>> Stashed changes
 .creerFormGroupe{
     display: flex;
     flex-direction: column;
@@ -160,6 +165,26 @@ main {
   justify-content: space-between;
   align-items: center;
 }
+/* page de statistique par boubker habib*/
+.statistiqueDash {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 40px;
+
+}
+
+.statistiqueDash h2,
+.statistiqueDash > p {
+    width: 100%;
+}
+
+.statistiquePart{
+    flex: 1;
+    height: 100px;
+    width: 100px;
+    background-color: #15803d;
+    border-radius: 20px;
 
 .filter-button {
   height: 30px;
@@ -192,6 +217,7 @@ main {
 }
 /* fifth page */
 
+<<<<<<< Updated upstream
 
 
 
@@ -274,6 +300,20 @@ main {
 .button:hover{
     color: white;
 }
+=======
+}
+.groupesDash div{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
+
+
+/* ======= */
+>>>>>>> Stashed changes
 .depenses{
     flex: 90%;
     display: flex;
@@ -315,6 +355,7 @@ main {
     position: relative;
     width: 200px;
     height: 35px;
+<<<<<<< Updated upstream
     top: 30px;
     left: 30px;
     border-radius: 20px;
@@ -322,3 +363,9 @@ main {
   }
   /* fifth page */
 }
+=======
+    width: 300px;
+    border-radius: 15px;
+}
+/* >>>>>>> 8aac52b136afe57a026c08dd7ba11dd54eb270fd */
+>>>>>>> Stashed changes
