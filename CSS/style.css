@@ -1,0 +1,371 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+nav {
+  padding: 0px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(226, 226, 218, 0.998);
+}
+span {
+  color: rgb(121, 14, 221);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.logo .icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+}
+.button1 {
+  height: 45px;
+  width: 250px;
+  border-radius: 20px;
+}
+main {
+  display: flex;
+}
+/* First page css*/
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  flex: 90%;
+  padding: 20px 30px;
+  background-color: #82b1c7;
+  border-radius: 20px;
+  margin: 30px 60px;
+}
+.hero {
+  display: flex;
+}
+.hero h2 {
+  color: rgb(11, 5, 13);
+  font-style: "sans-serif";
+}
+.hero-img {
+  flex: 1;
+}
+.hero-text {
+  flex: 1;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #b3b7f2;
+  padding: 30px 10px 30px 10px;
+  flex: 10%;
+}
+.link-botton {
+  height: 40px;
+  border-radius: 10px;
+}
+.second-img {
+  width: 500px;
+  height: 300px;
+  border-radius: 10px;
+}
+.text {
+  font-size: 40px;
+  color: rgb(0, 0, 0);
+  font-style: "Inter";
+}
+.button {
+  width: 350px;
+  height: 50px;
+  font-style: "Inter";
+  background: orange;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.button:hover {
+  color: white;
+}
+<<<<<<< Updated upstream
+/* seocnd page */
+=======
+/* <<<<<<< HEAD */
+/* page de creer groupe par boubker habib*/
+>>>>>>> Stashed changes
+.creerFormGroupe{
+    display: flex;
+    flex-direction: column;
+}
+.creerFormGroupe div{
+    margin-left: 60px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+}
+#creerNomGroupe input,#Devise,#data{
+    border-radius: 15px;
+    height: 30px;
+    width: 95%;
+}
+#creerButtonGroupe button{
+    align-self: center;
+    background-color: yellow;
+    border-radius: 20px;
+    padding: 20px 30px;
+}
+#creerButtonGroupe button:hover{
+    background: #15803d;
+}
+#description{
+    border-radius: 15px; 
+    width: 95%;   
+}
+/* third page css */
+.depenses {
+  flex: 90%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  background-color: #55867a;
+  padding: 10px 0px;
+  margin: 0px 40px;
+  border-radius: 20px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  width: 820px;
+  height: 30px;
+  border-radius: 10px;
+}
+.button-despense {
+  margin: 10px 0px 0px 0px;
+  background: orange;
+  height: 35px;
+  width: 300px;
+  border-radius: 15px;
+}
+/*Forth page css*/
+.soldes {
+  flex: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: #55867a;
+  padding: 10px 40px;
+  margin: 0px 40px;
+  border-radius: 20px;
+}
+.soldes-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* page de statistique par boubker habib*/
+.statistiqueDash {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 40px;
+
+}
+
+.statistiqueDash h2,
+.statistiqueDash > p {
+    width: 100%;
+}
+
+.statistiquePart{
+    flex: 1;
+    height: 100px;
+    width: 100px;
+    background-color: #15803d;
+    border-radius: 20px;
+
+.filter-button {
+  height: 30px;
+  width: 100px;
+  border-radius: 20px;
+  background: rgb(196, 40, 235);
+}
+.soldes-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.list {
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  width: 820px;
+  height: 30px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.aff-btn {
+  position: relative;
+  width: 200px;
+  height: 35px;
+  left: 800px;
+  border-radius: 20px;
+  background: rgb(196, 40, 235);
+}
+/* fifth page */
+
+<<<<<<< Updated upstream
+
+
+
+/*part mobile*/
+@media screen and (max-width: 375px) {
+  /* first page */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 20px;
+    background-color: rgba(226, 226, 218, 0.998);
+  }
+  .button1 {
+    height: 35px;
+    width: 100px;
+    border-radius: 20px;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 200px;
+    gap: 20px;
+  }
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #82b1c7;
+    border-radius: 20px;
+    padding: 0px;
+    margin: 0px;
+  }
+  .second-img {
+    width: 200px;
+    height: 200px;
+  }
+  .text {
+    margin: 0px;
+  }
+  .button {
+    width: 200px;
+    height: 50px;
+    font-style: "Inter";
+    background: orange;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+  /* second page */
+
+
+
+
+  /* third page */
+  .input {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+  }
+  .depenses {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #55867a;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 20px;
+  }
+  .button-despense {
+    margin: 10px 0px 0px 0px;
+    background: orange;
+    height: 35px;
+    width: 200px;
+    border-radius: 15px;
+  }
+  /* forth page */
+
+.button:hover{
+    color: white;
+}
+=======
+}
+.groupesDash div{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
+
+
+/* ======= */
+>>>>>>> Stashed changes
+.depenses{
+    flex: 90%;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: #55867a;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 20px;
+  }
+  .filter-button {
+    height: 30px;
+    width: 50px;
+    border-radius: 20px;
+    background: rgb(196, 40, 235);
+  }
+  .soldes-title {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+  }
+  .soldes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .list {
+    position: relative;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    width: 160px;
+    height: auto;
+    border-radius: 10px;
+    background: #ffffff;
+  }
+  .aff-btn {
+    position: relative;
+    width: 200px;
+    height: 35px;
+<<<<<<< Updated upstream
+    top: 30px;
+    left: 30px;
+    border-radius: 20px;
+    background: rgb(196, 40, 235);
+  }
+  /* fifth page */
+}
+=======
+    width: 300px;
+    border-radius: 15px;
+}
+/* >>>>>>> 8aac52b136afe57a026c08dd7ba11dd54eb270fd */
+>>>>>>> Stashed changes
