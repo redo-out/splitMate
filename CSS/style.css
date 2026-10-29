@@ -37,12 +37,12 @@ main {
   display: flex;
 }
 
-<<<<<<< HEAD=======>>>>>>>c15d1352cc83aac3f27e4e6d7a7f6baf7609b7b8 .hero-container {
+.hero-container {
   display: flex;
   flex-direction: column;
   flex: 90%;
   padding: 20px 30px;
-  background-color: #82b1c7;
+  background-color: #9DCAA2;
   border-radius: 20px;
   margin: 30px 60px;
 }
@@ -102,7 +102,6 @@ main {
 .button:hover {
   color: white;
 }
-
 
 @media screen and (max-width: 375px) {
   nav {
