@@ -31,9 +31,11 @@
     width: 95%;   
 }
 /* Responsive */
-@media (max-width: 300px) {
-    #creerFormGroupe{
-        margin-left: 20px;
+@media (max-width: 375px) {
+    .creerFormGroupe h1,.creerFormGroupe p{
+        padding: 0px 50px;
+
+
 
     }
 
