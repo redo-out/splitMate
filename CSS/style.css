@@ -37,7 +37,7 @@ main {
   display: flex;
 }
 
-<<<<<<< HEAD=======>>>>>>>c15d1352cc83aac3f27e4e6d7a7f6baf7609b7b8 .hero-container {
+.hero-container {
   display: flex;
   flex-direction: column;
   flex: 90%;
