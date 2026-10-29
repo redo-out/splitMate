@@ -1,0 +1,152 @@
+/* page de statistique par boubker habib*/
+.statistiqueDash {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 25px;
+    background-color: #f8fafc;
+    border-radius: 15px;
+}
+
+.statistiqueDash h2 {
+    width: 100%;
+    margin: 0;
+    color: #1e293b;
+    font-size: 24px;
+}
+
+.statistiqueDash > p {
+    width: 100%;
+    margin: -10px 0 10px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.statistiquePart {
+    flex: 1 1 180px;
+    padding: 25px 20px;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #15803d;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 3px 10px #00000008;
+    transition: 0.3s;
+}
+
+.statistiquePart i {
+    font-style: normal;
+    font-size: 15px;
+    color: #64748b;
+}
+
+.statistiquePart span {
+    font-size: 28px;
+    font-weight: bold;
+    color: #15803d;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .statistiqueDash {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .statistiqueDash h2 {
+        font-size: 20px;
+    }
+
+    .statistiquePart {
+        flex: 1 1 100%;
+    }
+}
+
+/* Section groupes et dépenses */
+.groupesDash,
+.depenseDash {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px #00000008;
+}
+
+/* Titre et filtre */
+.groupesDash > div,
+.depenseDash > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.groupesDash h2,
+.depenseDash h2 {
+    color: #15803d;
+    font-size: 22px;
+    margin: 0;
+}
+
+/* Select */
+#filterBottunGroupe,
+#filterButtonDeponse {
+    padding: 8px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+#filterBottunGroupe:focus,
+#filterButtonDeponse:focus {
+    border-color: #15803d;
+}
+
+/* Listes */
+.groupesDash ul,
+.depenseDash ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.groupesDash li,
+.depenseDash li {
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #f8fafc;
+    border-radius: 6px;
+    color: #334155;
+    font-size: 14px;
+    border-left: 3px solid #15803d;
+}
+
+/* Effet au passage de la souris */
+.groupesDash li:hover,
+.depenseDash li:hover {
+    background-color: #dcfce7;
+}
+
+/* Adaptation aux petits écrans */
+@media (max-width: 600px) {
+    .groupesDash,
+    .depenseDash {
+        padding: 15px;
+    }
+
+    .groupesDash h2,
+    .depenseDash h2 {
+        font-size: 18px;
+    }
+
+    .groupesDash li,
+    .depenseDash li {
+        font-size: 13px;
+        overflow-wrap: anywhere;
+    }
+}

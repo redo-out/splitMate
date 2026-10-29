@@ -1,0 +1,40 @@
+/* page de creer groupe par boubker habib*/
+
+.creerFormGroupe{
+    display: flex;
+    flex-direction: column;
+}
+.creerFormGroupe div{
+    margin-left: 60px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+}
+#creerNomGroupe input,#Devise,#data{
+    border-radius: 15px;
+    height: 30px;
+    width: 95%;
+}
+#creerButtonGroupe button{
+    align-self: center;
+    background-color: yellow;
+    border-radius: 20px;
+    padding: 20px 30px;
+}
+#creerButtonGroupe button:hover{
+    background: #15803d;
+}
+#description{
+    border-radius: 15px; 
+    width: 95%;   
+}
+/* Responsive */
+@media (max-width: 300px) {
+    #creerFormGroupe{
+        margin-left: 20px;
+
+    }
+
+}
