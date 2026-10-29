@@ -1,0 +1,90 @@
+ .soldes {
+  flex: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: #9DCAA2;
+  padding: 10px 40px;
+  margin: 0px 40px;
+  border-radius: 20px;
+}
+.soldes-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter-button {
+  height: 30px;
+  width: 100px;
+  border-radius: 20px;
+  background: rgb(196, 40, 235);
+}
+.soldes-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.list {
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  width: 820px;
+  height: 30px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.aff-btn {
+  position: relative;
+  width: 200px;
+  height: 35px;
+  left: 800px;
+  border-radius: 20px;
+  background: rgb(196, 40, 235);
+}
+
+@media screen and (max-width: 375px) {
+    .soldes {
+  display: flex;
+  flex-direction: column;
+  background-color: #55867a;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 20px;
+}
+    .filter-button {
+    height: 30px;
+    width: 50px;
+    border-radius: 20px;
+    background: rgb(196, 40, 235);
+  }
+  .soldes-title {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+  }
+  .soldes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .list {
+    position: relative;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    width: 160px;
+    height: auto;
+    border-radius: 10px;
+    background: #ffffff;
+  }
+  .aff-btn {
+    position: relative;
+    width: 200px;
+    height: 35px;
+    top: 30px;
+    left: 30px;
+    border-radius: 20px;
+    background: rgb(196, 40, 235);
+  }   
+}
