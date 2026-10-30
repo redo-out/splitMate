@@ -3,8 +3,13 @@ let DescriptionGroupes= document.getElementById("description");
 let DeviseGroupe = document.getElementById("Devise");
 let DateGroupe = document.getElementById("data");
 let formGroupe = document.getElementById("formGroupe");
-const groupes = [];
-let conteurGroupe = 1;
+let groupes = JSON.parse(localStorage.getItem("groupes")) || [];
+let conteurGroupe = groupes.length + 1;
+// Récupérer les groupes déjà enregistrés
+
+
+
+
 
 
 function creerGroupe(event) {
@@ -31,21 +36,24 @@ function creerGroupe(event) {
             nom: NomGroupeValue,
             description: DescriptionGroupesValue,
             devise: DeviseGroupeValue,
-            date: DateGroupeValue 
+            date: DateGroupeValue,
+            membres:[]
         };
         groupes.push(groupe);
-        // console.log(groupes);
-        localStorage.setItem("groupes", JSON.stringify(groupes));
+
+        let groupeR = localStorage.setItem("groupes", JSON.stringify(groupes));
+
+        console.log(groupes.membres);
 
         NomGroupe.value = "";
         DescriptionGroupes.value = "";
         DeviseGroupe.value = "";
         DateGroupe.value = "";
-        const groupes = JSON.parse(localStorage.getItem("groupes")) || [];
+        
 
 
 
-        console.log(groupesRecuperes);
+        
    
         
 
