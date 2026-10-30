@@ -34,15 +34,20 @@ function creerGroupe(event) {
             date: DateGroupeValue 
         };
         groupes.push(groupe);
-        console.log(groupes);
-        
+        // console.log(groupes);
+        localStorage.setItem("groupes", JSON.stringify(groupes));
+
         NomGroupe.value = "";
         DescriptionGroupes.value = "";
         DeviseGroupe.value = "";
         DateGroupe.value = "";
+        const groupes = JSON.parse(localStorage.getItem("groupes")) || [];
 
+
+
+        console.log(groupesRecuperes);
    
-        NomGroupe.focus();
+        
 
 
 
@@ -50,4 +55,66 @@ function creerGroupe(event) {
 }
 
 formGroupe.addEventListener("submit", creerGroupe);
-creerGroupe();
+
+
+
+
+// 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 
+
+
