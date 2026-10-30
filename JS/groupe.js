@@ -19,7 +19,7 @@ function creerGroupe(event) {
         console.log(DescriptionGroupesValue);
         console.log(DeviseGroupeValue);
         console.log(DateGroupeValue);
-
+        
         if (NomGroupeValue === "") {
         return;
         };
