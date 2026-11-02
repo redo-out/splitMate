@@ -41,9 +41,9 @@ function creerGroupe(event) {
         };
         groupes.push(groupe);
 
-        let groupeR = localStorage.setItem("groupes", JSON.stringify(groupes));
+        localStorage.setItem("groupes", JSON.stringify(groupes));
 
-        console.log(groupes.membres);
+        console.log(groupe.membres);
 
         NomGroupe.value = "";
         DescriptionGroupes.value = "";

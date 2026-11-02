@@ -5,7 +5,9 @@ let inputDate = document.getElementById("input-date");
 let categorieInput = document.getElementById("categorie-input");
 let payeurInput = document.getElementById("payeur-input");
 let button = document.getElementById("button-despense");
-let despensesAray = [];3
+let despensesAray = JSON.parse(localStorage.getItem("despensesAray")) || [];
+// let despensesAray = [];
+
 let despenseId = 1;
 let totalDespanse = 0;
 
@@ -15,6 +17,12 @@ function creatDespense() {
   let inputDateValue = document.getElementById("input-date").value;
   let categorieInputValue = document.getElementById("categorie-input").value;
   let payeurInputValue = document.getElementById("payeur-input").value;
+  // console.log(textInputValue);
+  // console.log(montantInputValue);
+  // console.log(inputDateValue);
+  // console.log(categorieInputValue);
+  // console.log(payeurInputValue);
+  
   if (textInputValue.length <= 0 ||montantInputValue.length <= 0 ||inputDateValue.length <= 0) {
     return;
   }
@@ -30,6 +38,7 @@ function creatDespense() {
     payeur: payeurInputValue
   };
   despensesAray.push(despense);
+  localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
   console.log(despensesAray);
   
   textInput.value = "";
@@ -40,15 +49,15 @@ button.addEventListener('click', creatDespense);
 
 // ajouter les despense au dashbord
 
-let despensesDash = document.getElementById('despenses-dash');
-function addDepense(){
-    temp = '';
-    despensesAray.forEach((item)=>{
-        temp += `<li> ${item.payeurInputValue} de group ${item.groupName} ==> ${item.montantInputValue}
-        categorie: ${item.categorieInputValue} au ${item.inputDateValue}`
-    })
-    despensesDash.innerHTML = temp;
-}
+// let despensesDash = document.getElementById('despenses-dash');
+// function addDepense(){
+//     temp = '';
+//     despensesAray.forEach((item)=>{
+//         temp += `<li> ${item.payeurInputValue} de group ${item.groupName} ==> ${item.montantInputValue}
+//         categorie: ${item.categorieInputValue} au ${item.inputDateValue}`
+//     })
+//     despensesDash.innerHTML = temp;
+// }
 
 
 
