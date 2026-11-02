@@ -1,17 +1,11 @@
-// crear les despense
+let despensesAray = JSON.parse(localStorage.getItem("despensesAray")) || [];
+const groupes = JSON.parse(localStorage.getItem("groupes")) || [];
 let textInput = document.getElementById("text-input");
 let montantInput = document.getElementById("montant-input");
 let inputDate = document.getElementById("input-date");
 let categorieInput = document.getElementById("categorie-input");
 let payeurInput = document.getElementById("payeur-input");
 let button = document.getElementById("button-despense");
-// let despensesAray = [];
-
-let despensesAray = JSON.parse(localStorage.getItem("despensesAray")) || [];
-// let despensesAray = [];
-
-
-let despenseId = 1;
 let totalDespanse = 0;
 
 function creatDespense() {
@@ -19,33 +13,20 @@ function creatDespense() {
   let montantInputValue = document.getElementById("montant-input").value.trim();
   let inputDateValue = document.getElementById("input-date").value;
   let categorieInputValue = document.getElementById("categorie-input").value;
-  let payeurInputValue = document.getElementById("payeur-input").value;
-  // console.log(textInputValue);
-  // console.log(montantInputValue);
-  // console.log(inputDateValue);
-  // console.log(categorieInputValue);
-  // console.log(payeurInputValue);
-  
+  let payeurInputValue = document.getElementById("payeur-input").value;  
   if (textInputValue.length <= 0 ||montantInputValue.length <= 0 ||inputDateValue.length <= 0) {
     return;
   }
-
   totalDespanse += Number(montantInputValue);
-  console.log(totalDespanse);
-  console.log(textInputValue);
-  console.log(montantInputValue);
-  console.log(inputDateValue);
-  console.log(categorieInputValue);
-  console.log(payeurInputValue);
-  
   let despense = {
-    id: despenseId++,
+    id: Date.now(),
     name: textInputValue,
     montant: montantInputValue,
     date: inputDateValue,
     categorie: categorieInputValue,
     payeur: payeurInputValue
   };
+
   despensesAray.push(despense);
   localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
   console.log(despensesAray);
@@ -53,20 +34,7 @@ function creatDespense() {
   textInput.value = "";
   inputDate.value = "";
   montantInput.value = "";
+  categorieInput.value = "";
+  payeurInput.value = "0";
 }
 button.addEventListener('click', creatDespense);
-
-// ajouter les despense au dashbord
-
-// let despensesDash = document.getElementById('despenses-dash');
-// function addDepense(){
-//     temp = '';
-//     despensesAray.forEach((item)=>{
-//         temp += `<li> ${item.payeurInputValue} de group ${item.groupName} ==> ${item.montantInputValue}
-//         categorie: ${item.categorieInputValue} au ${item.inputDateValue}`
-//     })
-//     despensesDash.innerHTML = temp;
-// }
-
-
-
