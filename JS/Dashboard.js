@@ -1,90 +1,85 @@
 
 const groupes = JSON.parse(localStorage.getItem("groupes")) || [];
+const despenses = JSON.parse(localStorage.getItem("despensesAray")) || [];
 
 const listGroupe = document.getElementById("listGroupes");
+const listDesponse = document.getElementById("listDesponse");
 
 listGroupe.innerHTML = "";
-
+listDesponse.innerHTML = "";
 groupes.forEach((element, index) => {
     listGroupe.innerHTML += `
-        <li>
+        <li style="display: flex; justify-content: space-between; align-items: center;">
             <span>
                 ${element.nom} ==>
                 ${element.description} ==>
                 ${element.devise} ==>
                 ${element.date}
             </span>
-
-            <button onclick="afficherActions(${element.id})">
-                Actions ${index + 1}
-            </button>
-
-            <div id="actions-${element.id}" style="display:none">
-                <button onclick="supprimerGroupe(${element.id})">
-                    Supprimer groupe
-                </button>
-
-                <button onclick="ajouterPersonne(${element.id})">
-                    Ajouter personne
-                </button>
-
-                <button onclick="modifierGroupe(${element.id})">
-                    Modifier groupe
-                </button>
-            </div>
+            <button class="groupe-delete-button" data-index="${index}">Supprimer</button>
         </li>
     `;
 });
-function supprimerGroupe(){
 
-};
-function modifierGroupe(){
 
-};
-function ajouterPersonne(id) {
 
-    let groupes = JSON.parse(localStorage.getItem("groupes")) || [];
+despenses.forEach((element, index) => {
+    listDesponse.innerHTML += `
+        <li style="display: flex; justify-content: space-between; align-items: center;">
+            <span>
+                ${element.name} ==>
+                ${element.montant} ==>
+                ${element.date} ==>
+                ${element.categorie} ==>
+                ${element.payeur}
+            </span>
+            <button class="despense-delete-button" data-index="${index}">Supprimer</button>
+        </li>
+    `;
+});
 
-    let groupe = groupes.find(element => element.id == id);
 
-    if (!groupe) {
-        console.log("Groupe introuvable");
-        return;
+
+let main = document.querySelector("main");
+
+main.addEventListener("click", (event) => {
+
+    // Suprimer Groupe
+    if (event.target.classList.contains("groupe-delete-button")) {
+
+        let index = event.target.dataset.index;
+
+
+        groupes.splice(index, 1);
+
+
+        localStorage.setItem("groupes", JSON.stringify(groupes));
+
+
+        event.target.closest("li").remove();
     }
 
-    groupe.membres = groupe.membres || [];
 
-    let nom = prompt("Nom :");
-    if (nom == '' || nom.trim().length <= 0){
-        return;
+    // Suprimer dajpense
+    if (event.target.classList.contains("despense-delete-button")) {
+
+        let index = event.target.dataset.index;
+
+
+        despenses.splice(index, 1);
+
+
+
+        localStorage.setItem("despensesAray", JSON.stringify(despenses));
+
+        event.target.closest("li").remove();
     }
-    let prenom = prompt("Prénom :");
-    if (prenom == '' || prenom.trim().length <= 0){
-        return;
-    }
-    // if (!nom || !prenom) return;
-
-    groupe.membres.push({
-        nom: nom,
-        prenom: prenom
-    });
-
-    localStorage.setItem("groupes", JSON.stringify(groupes));
-
-  
-
-    console.log(groupe.membres);
-}
+})
 
 
-function afficherActions(id) {
-    const actions = document.getElementById(`actions-${id}`);
 
-    if (actions.style.display === "none") {
-        actions.style.display = "flex";
-    } else {
-        actions.style.display = "none";
-    }
-}
+
+
+
 
 

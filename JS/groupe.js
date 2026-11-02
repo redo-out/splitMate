@@ -27,7 +27,7 @@ function creerGroupe(event) {
         console.log(DescriptionGroupesValue);
         console.log(DeviseGroupeValue);
         console.log(DateGroupeValue);
-        
+
         const groupe = {
             id: conteurGroupe++,
             nom: NomGroupeValue,
@@ -43,6 +43,8 @@ function creerGroupe(event) {
 
             console.log(member);
         })
+        console.log(groupe);
+        
 
         NomGroupe.value = "";
         DescriptionGroupes.value = "";
