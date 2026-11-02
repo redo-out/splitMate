@@ -3,8 +3,13 @@ let DescriptionGroupes= document.getElementById("description");
 let DeviseGroupe = document.getElementById("Devise");
 let DateGroupe = document.getElementById("data");
 let formGroupe = document.getElementById("formGroupe");
-const groupes = [];
-let conteurGroupe = 1;
+let groupes = JSON.parse(localStorage.getItem("groupes")) || []; //fallback
+let conteurGroupe = groupes.length + 1;
+// Récupérer les groupes déjà enregistrés
+
+
+
+
 
 
 function creerGroupe(event) {
@@ -15,37 +20,39 @@ function creerGroupe(event) {
         let DeviseGroupeValue = document.getElementById("Devise").value;
         let DateGroupeValue = document.getElementById("data").value;
 
+        if (NomGroupeValue.length <= 0 || DeviseGroupeValue.length <= 0 || DateGroupeValue.length <= 0){
+            return;
+        }
         console.log(NomGroupeValue);
         console.log(DescriptionGroupesValue);
         console.log(DeviseGroupeValue);
         console.log(DateGroupeValue);
         
-        if (NomGroupeValue === "") {
-        return;
-        };
-        if (DeviseGroupeValue === "") {
-        return;
-        };
         const groupe = {
             id: conteurGroupe++,
             nom: NomGroupeValue,
             description: DescriptionGroupesValue,
             devise: DeviseGroupeValue,
-            date: DateGroupeValue 
+            date: DateGroupeValue,
+            membres:[]
         };
         groupes.push(groupe);
-        // console.log(groupes);
+
         localStorage.setItem("groupes", JSON.stringify(groupes));
+        groupe.membres.forEach((member) =>{
+
+            console.log(member);
+        })
 
         NomGroupe.value = "";
         DescriptionGroupes.value = "";
         DeviseGroupe.value = "";
         DateGroupe.value = "";
-        const groupes = JSON.parse(localStorage.getItem("groupes")) || [];
+        
 
 
 
-        console.log(groupesRecuperes);
+        
    
         
 

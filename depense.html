@@ -37,19 +37,19 @@
           </div>
           <div class="inputs">
             <label for="">Titre:</label>
-            <input class="input" type="text" name="titre" />
+            <input class="input" id="text-input" type="text" name="titre" />
           </div>
           <div class="inputs">
             <label for="">Montant:</label>
-            <input class="input" type="number" name="montant" />
+            <input class="input" id="montant-input" type="number" name="montant" />
           </div>
           <div class="inputs">
             <label for="">Date:</label>
-            <input class="input" type="date" name="date" />
+            <input class="input" id="input-date" type="date" name="date" />
           </div>
           <div class="inputs">
             <label for="">Categorie:</label>
-            <select class="input" name="" id="">
+            <select class="input" name="" id="categorie-input">
               <option value="Transport">Transport</option>
               <option value="Food">Food</option>
               <option value="Hotel">Hotel</option>
@@ -57,16 +57,18 @@
           </div>
           <div class="inputs">
             <label for="">Paye par:</label>
-            <select class="input" name="" id="">
+            <select class="input" name="" id="payeur-input">
               <option value="">1</option>
               <option value="">2</option>
               <option value="">3</option>
             </select>
           </div>
           <div>
-            <button class="button-despense">Enregistrer la depense</button>
+            <button class="button-despense" id="button-despense">Enregistrer la depense</button>
           </div>
       </section>
     </main>
+
+    <script src="JS/despense.js"></script>
   </body>
 </html>
