@@ -45,11 +45,14 @@
                 </div>
                 <div id="typeDeviseGroupe">
                     <label for="devise"><h2>devise</h2></label><br>
-                    <select name="devise" id="Devise">
-                        <option value="le $">$</option>
-                        <option value="le £">£</option>
-                        <option value="le Dh">Dh</option>
+
+                    <select name="devise" id="filterBottunGroupe">
+                        <option value="Tous">Tous</option>
+                        <option value="Dh">Dh</option>
+                        <option value="£">£</option>
+                        <option value="$">$</option>
                     </select>
+
                 </div>
                 <div id="creerDateDebutGroupe">
                     <label for="data"><h2>Date de début</h2></label><br>
@@ -57,7 +60,11 @@
                 </div>
 
                 <div id="creerButtonGroupe">
-                    <button type="submit">Créer un groupe</button>
+                    <button type="submit" id="buttonGroupe">Ajouter Groupe</button>
+
+                    <button type="button" id="modifyBtn" style="display: none;">
+                        Modifier Groupe
+                    </button>
 
 
                 </div>

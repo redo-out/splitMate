@@ -4,7 +4,7 @@ let DeviseGroupe = document.getElementById("Devise");
 let DateGroupe = document.getElementById("data");
 let formGroupe = document.getElementById("formGroupe");
 let groupes = JSON.parse(localStorage.getItem("groupes")) || [];
-let conteurGroupe = groupes.length + 1;
+
 // Récupérer les groupes déjà enregistrés
 
 
@@ -32,7 +32,7 @@ function creerGroupe(event) {
         return;
         };
         const groupe = {
-            id: conteurGroupe++,
+            id: Date.now(),
             nom: NomGroupeValue,
             description: DescriptionGroupesValue,
             devise: DeviseGroupeValue,
@@ -61,6 +61,55 @@ function creerGroupe(event) {
 
 
 }
+let modifyBtn = document.getElementById("modifyBtn");
+let buttonGroupe = document.getElementById("buttonGroupe");
+
+// Récupérer le groupe à modifier
+let groupeIndex = localStorage.getItem("groupeIndex");
+
+if (groupeIndex !== null) {
+
+    let index = Number(groupeIndex);
+    let groupe = groupes[index];
+
+    if (groupe) {
+        NomGroupe.value = groupe.nom;
+        DescriptionGroupes.value = groupe.description;
+        DeviseGroupe.value = groupe.devise;
+        DateGroupe.value = groupe.date;
+
+        buttonGroupe.style.display = "none";
+        modifyBtn.style.display = "inline";
+    }
+}
+
+// Modifier le groupe
+modifyBtn.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    let index = Number(localStorage.getItem("groupeIndex"));
+
+    if (localStorage.getItem("groupeIndex") === null) {
+        return;
+    }
+
+    if (!groupes[index]) {
+        return;
+    }
+
+    groupes[index].nom = NomGroupe.value.trim();
+    groupes[index].description = DescriptionGroupes.value.trim();
+    groupes[index].devise = DeviseGroupe.value;
+    groupes[index].date = DateGroupe.value;
+
+    localStorage.setItem("groupes", JSON.stringify(groupes));
+
+    localStorage.removeItem("groupeIndex");
+
+    window.location.href = "Dashboard.html";
+});
+
 
 formGroupe.addEventListener("submit", creerGroupe);
 
