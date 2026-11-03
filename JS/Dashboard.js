@@ -5,7 +5,7 @@ const listDesponse = document.getElementById("listDesponse");
 
 listGroupe.innerHTML = "";
 listDesponse.innerHTML = "";
-groupes.forEach((element) => {
+groupes.forEach((element, index) => {
   listGroupe.innerHTML += `
         <li style="display: flex; justify-content: space-between; align-items: center;">
             <span>
@@ -14,12 +14,15 @@ groupes.forEach((element) => {
                 ${element.devise} ==>
                 ${element.date}
             </span>
-            <button class="groupe-delete-button" data-index="${Date.now()}">Supprimer</button>
+            <div>
+            <button class="groupe-delete-button" data-index="${index}">Supprimer</button>
+            <button class="groupe-ajoute-button" data-index="${index}">Ajouter member</button>
+            </div>
         </li>
     `;
 });
 
-despenses.forEach((element) => {
+despenses.forEach((element, index) => {
   listDesponse.innerHTML += `
         <li style="display: flex; justify-content: space-between; align-items: center;">
             <span>
@@ -29,7 +32,7 @@ despenses.forEach((element) => {
                 ${element.categorie} ==>
                 ${element.payeur}
             </span>
-            <button class="despense-delete-button" data-index="${Date.now()}">Supprimer</button>
+            <button class="despense-delete-button" data-index="${index}">Supprimer</button>
         </li>
     `;
 });

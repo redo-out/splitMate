@@ -1,11 +1,10 @@
-let despensesAray = JSON.parse(localStorage.getItem("despensesAray")) || [];
-const groupes = JSON.parse(localStorage.getItem("groupes")) || [];
 let textInput = document.getElementById("text-input");
 let montantInput = document.getElementById("montant-input");
 let inputDate = document.getElementById("input-date");
 let categorieInput = document.getElementById("categorie-input");
 let payeurInput = document.getElementById("payeur-input");
 let button = document.getElementById("button-despense");
+let despensesAray = JSON.parse(localStorage.getItem("despensesAray")) || [];
 let totalDespanse = 0;
 
 function creatDespense() {
@@ -35,6 +34,6 @@ function creatDespense() {
   inputDate.value = "";
   montantInput.value = "";
   categorieInput.value = "";
-  payeurInput.value = "0";
+  payeurInput.value = "";
 }
 button.addEventListener('click', creatDespense);

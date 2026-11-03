@@ -32,5 +32,4 @@ function creerGroupe(event) {
         DeviseGroupe.value = "";
         DateGroupe.value = "";
 }
-
 formGroupe.addEventListener("submit", creerGroupe);
