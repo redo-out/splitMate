@@ -1,6 +1,7 @@
 // group js
 // group js
 // group js
+let dateHandler = formatDate()
 let NomGroupe = document.getElementById("nom");
 let DescriptionGroupes = document.getElementById("description");
 let DeviseGroupe = document.getElementById("Devise");
@@ -20,7 +21,8 @@ function creerGroupe(event) {
   if (
     NomGroupeValue.length <= 0 ||
     DeviseGroupeValue.length <= 0 ||
-    DateGroupeValue.length <= 0
+    DateGroupeValue.length <= 0 ||
+    DateGroupeValue != dateHandler
   ) {
     return;
   }
@@ -30,13 +32,11 @@ function creerGroupe(event) {
     description: DescriptionGroupesValue,
     devise: DeviseGroupeValue,
     date: DateGroupeValue,
-    membres: [],
   };
   groupes.push(groupe);
   localStorage.setItem("groupes", JSON.stringify(groupes));
   NomGroupe.value = "";
   DescriptionGroupes.value = "";
-  DeviseGroupe.value = "";
   DateGroupe.value = "";
 }
 if (formGroupe) {
@@ -55,16 +55,26 @@ let buttonDespense = document.getElementById("button-despense");
 let despensesAray = JSON.parse(localStorage.getItem("despensesAray")) || [];
 let totalDespanse = 0;
 
+// function payeurInputHnadler(){
+//   members.forEach((member)=>{
+//     option.innerHTML = `<option value="">${member.name}</option>`
+//   })
+//   payeurInput.appendChild(option);
+// }
+// payeurInputHnadler();
+
 function creatDespense() {
   let textInputValue = document.getElementById("text-input").value.trim();
   let montantInputValue = document.getElementById("montant-input").value.trim();
   let inputDateValue = document.getElementById("input-date").value;
   let categorieInputValue = document.getElementById("categorie-input").value;
   let payeurInputValue = document.getElementById("payeur-input").value;
+  console.log(dateHandler, " ", inputDateValue)
   if (
     textInputValue.length <= 0 ||
     montantInputValue.length <= 0 ||
-    inputDateValue.length <= 0
+    inputDateValue.length <= 0 ||
+    inputDateValue != dateHandler
   ) {
     return;
   }
@@ -79,13 +89,14 @@ function creatDespense() {
   };
   despensesAray.push(despense);
   localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
-  console.log(despensesAray);
+  // console.log(despensesAray);
   textInput.value = "";
   inputDate.value = "";
   montantInput.value = "";
   categorieInput.value = "";
-  payeurInput.value = "";
+  // payeurInput.value = "";
 }
+
 if (buttonDespense) {
   buttonDespense.addEventListener("click", creatDespense);
 }
@@ -103,7 +114,7 @@ listGroupe.innerHTML = "";
 listDesponse.innerHTML = "";
 groupes.forEach((element, index) => {
   listGroupe.innerHTML += `
-        <li style="display: flex; justify-content: space-between; align-items: center;">
+        <li style="display: flex; justify-content: space-between; align-items: center; data-index="${index}">
             <span>
                 ${element.nom} ==>
                 ${element.description} ==>
@@ -112,7 +123,7 @@ groupes.forEach((element, index) => {
             </span>
             <div>
             <button class="groupe-delete-button" data-index="${index}">Supprimer</button>
-            <button class="groupe-ajoute-button" data-index="${index}">Ajouter member</button>
+            <button class="groupe-ajoute-button" data-id="${element.id}">Ajouter member</button>
             </div>
         </li>
     `;
@@ -132,6 +143,7 @@ despenses.forEach((element, index) => {
     `;
 });
 let main = document.querySelector("main");
+let members = JSON.parse(localStorage.getItem("members")) || [];
 main.addEventListener("click", (event) => {
   if (event.target.classList.contains("groupe-delete-button")) {
     let index = event.target.dataset.index;
@@ -146,9 +158,29 @@ main.addEventListener("click", (event) => {
     localStorage.setItem("despensesAray", JSON.stringify(despenses));
     event.target.closest("li").remove();
   }
-  if (event.target.classList.contains("groupe-ajoute-button")){
-    let input = document.createElement("input");
-    
+  if (event.target.classList.contains("groupe-ajoute-button")) {
+    let userFullName = prompt("Enter your full name:");
+    if (!userFullName) return;
+    let groupId = +(event.target.dataset.id);
+    let member = {
+      name: userFullName,
+      id: groupId,
+    };
+    // console.log(member.name);
+    if (members.includes(member.name)) return;
+    members.push(member);
+    localStorage.setItem("members", JSON.stringify(members));
   }
 });
+
+function formatDate(){
+    const date = new Date();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const year = date.getFullYear();
+    const formattedDate = `${year}-${month}-${day}`;
+    return (formattedDate);
+}
+
+
 
