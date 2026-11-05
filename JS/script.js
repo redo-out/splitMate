@@ -1,6 +1,7 @@
 // group js
 // group js
 // group js
+let members = JSON.parse(localStorage.getItem("members")) || [];
 let dateHandler = formatDate()
 let NomGroupe = document.getElementById("nom");
 let DescriptionGroupes = document.getElementById("description");
@@ -53,15 +54,16 @@ let categorieInput = document.getElementById("categorie-input");
 let payeurInput = document.getElementById("payeur-input");
 let buttonDespense = document.getElementById("button-despense");
 let despensesAray = JSON.parse(localStorage.getItem("despensesAray")) || [];
-let totalDespanse = 0;
 
-// function payeurInputHnadler(){
-//   members.forEach((member)=>{
-//     option.innerHTML = `<option value="">${member.name}</option>`
-//   })
-//   payeurInput.appendChild(option);
+// let payeur = document.getElementById("payeur-input");
+// function payeurInputHandler(){
+//     members.forEach((member)=>{
+//         let payeurEl = document.createElement("option");
+//         payeurEl.textContent = member.name;
+//         payeur.appendChild(payeurEl);
+//     })
 // }
-// payeurInputHnadler();
+//     payeurInputHandler();
 
 function creatDespense() {
   let textInputValue = document.getElementById("text-input").value.trim();
@@ -78,7 +80,6 @@ function creatDespense() {
   ) {
     return;
   }
-  totalDespanse += Number(montantInputValue);
   let despense = {
     id: Date.now(),
     name: textInputValue,
@@ -88,13 +89,16 @@ function creatDespense() {
     payeur: payeurInputValue,
   };
   despensesAray.push(despense);
-  console.log(despensesAray); 
+  console.log(despensesAray);
+  
+  localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
   localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
   textInput.value = "";
   inputDate.value = "";
   montantInput.value = "";
   categorieInput.value = "";
 }
+
 if (buttonDespense) {
   buttonDespense.addEventListener("click", creatDespense);
 }
@@ -114,8 +118,11 @@ const filterGroupe = document.getElementById("filterBottunGroupe");
 
 function filtrerGroupesDevise() {
     listGroupe.innerHTML = "";
+
     groupes.forEach((element) => {
+
         if (element.devise.includes(filterGroupe.value)) {
+
             listGroupe.innerHTML += `
                 <li>
                     <span>
@@ -124,6 +131,7 @@ function filtrerGroupesDevise() {
                         ${element.devise} ==>
                         ${element.date}
                     </span>
+
                     <div>
                         <button class="groupe-delete-button" data-id="${element.id}">
                             Supprimer
@@ -165,15 +173,48 @@ function filtrerGroupesDevise() {
         }
     });
 };
+// groups number
+// groups number
+let groupsStatique = document.getElementById("statistiquePart2")
+groupsStatique.innerHTML = "";
+function groupsTotal(){
+    let gpStatique = document.getElementById("statistiquePart2")
+    gpStatique.innerHTML = `<i>Mes groupes</i>
+                    <span>${groupes.length}</span>
+                    `
+}
+
+// total despense
+// total despense
+
+let statistiquePart = document.getElementById("statistiquePart1");
+function TotalDespanse(){
+    let result = despensesAray.reduce(function(total, num){
+        return Number(total) + Number(num.montant);
+    },0);
+    return result;
+}
+
+statistiquePart1.innerHTML = "";
+function affichTotalDespanses(){
+    let result = TotalDespanse();
+    let statPart = document.getElementById("statistiquePart1")
+    statPart.innerHTML = `<i>Total des dépenses</i>
+    <span>${result} DH<span>  
+    `
+}
 if(filterGroupe){
     filterGroupe.addEventListener("change", filtrerGroupesDevise);
     filtrerGroupesDevise();
+    groupsTotal();
 };
+
 let filterDespense = document.getElementById("filterBottundepense");
 function filtrerDespenseCategorie() {
     listDesponse.innerHTML = "";
     despensesAray.forEach((element) => {
         if (element.categorie.includes(filterDespense.value)) {
+
             listDesponse.innerHTML += `
                 <li style="display: flex; justify-content: space-between; align-items: center;">
                     <span>
@@ -183,15 +224,17 @@ function filtrerDespenseCategorie() {
                         ${element.categorie} ==>
                         ${element.payeur}
                     </span>
-
+                    <div>
                     <button class="despense-delete-button" data-id="${element.id}">
                         Supprimer
                     </button>
                     <button class="despense-modifier-button" data-id="${element.id}">
                         Modifier
                     </button>
+                    </div>
                 </li>
             `;
+
         } else if (filterDespense.value === "Tous") {
 
             listDesponse.innerHTML += `
@@ -203,92 +246,66 @@ function filtrerDespenseCategorie() {
                         ${element.categorie} ==>
                         ${element.payeur}
                     </span>
-
+                    <div>
                     <button class="despense-delete-button" data-id="${element.id}">
                         Supprimer
                     </button>
                     <button class="despense-modifier-button" data-id="${element.id}">
                         Modifier
                     </button>
+                    </div>
                 </li>
             `;
         }
     });
 };
+
 if (filterDespense) {
     filterDespense.addEventListener("change", filtrerDespenseCategorie);
     filtrerDespenseCategorie();
+    affichTotalDespanses();
 }
-let modifierGroupe = document.getElementById("modifierGroupe");
-if (modifierGroupe) {
-  filterDespense.addEventListener("change", filtrerDespenseCategorie);
-  filtrerDespenseCategorie();
-};
-if (listGroupe) {
-    listGroupe.addEventListener("click", (event) => {
 
-        let modifeBtn = event.target.closest(".groupe-modifier-button");
 
-        if (modifeBtn) {
+// let modifierGroupe = document.getElementById("modifierGroupe");
+// if (modifierGroupe) {
+//   filterDespense.addEventListener("change", filtrerDespenseCategorie);
+//   filtrerDespenseCategorie();
+// };
+// if (listGroupe) {
+//     listGroupe.addEventListener("click", (event) => {
 
-            let id = Number(modifeBtn.dataset.id);
+//         let modifeBtn = event.target.closest(".groupe-modifier-button");
 
-            let groupe = groupes.find(element => element.id === id);
+//         if (modifeBtn) {
 
-            if (groupe) {
-                localStorage.setItem("groupeModifier", JSON.stringify(groupe));
-                window.location.href = "groupe.html";
-            }
-        }
-    });
-};
-listGroupe.innerHTML = "";
-listDesponse.innerHTML = "";
-groupes.forEach((element, index) => {
-  listGroupe.innerHTML += `
-        <li style="display: flex; justify-content: space-between; align-items: center; data-index="${index}">
-            <span>
-                ${element.nom} ==>
-                ${element.description} ==>
-                ${element.devise} ==>
-                ${element.date}
-            </span>
-            <div>
-            <button class="groupe-delete-button" data-index="${index}">Supprimer</button>
-            <button class="groupe-ajoute-button" data-id="${element.id}">Ajouter member</button>
-            </div>
-        </li>
-    `;
-});
-despenses.forEach((element, index) => {
-  listDesponse.innerHTML += `
-        <li style="display: flex; justify-content: space-between; align-items: center;">
-            <span>
-                ${element.name} ==>
-                ${element.montant} DH ==>
-                ${element.date} ==>
-                ${element.categorie} ==>
-                ${element.payeur}
-            </span>
-            <button class="despense-delete-button" data-index="${index}">Supprimer</button>
-        </li>
-    `;
-});
-let main = document.querySelector("main");
-let members = JSON.parse(localStorage.getItem("members")) || [];
+//             let id = Number(modifeBtn.dataset.id);
+
+//             let groupe = groupes.find(element => element.id === id);
+
+//             if (groupe) {
+//                 localStorage.setItem("groupeModifier", JSON.stringify(groupe));
+//                 window.location.href = "groupe.html";
+//             }
+//         }
+//     });
+// };
+let main = document.querySelector(".main");
 main.addEventListener("click", (event) => {
   if (event.target.classList.contains("groupe-delete-button")) {
     let index = event.target.dataset.index;
     groupes.splice(index, 1);
     localStorage.setItem("groupes", JSON.stringify(groupes));
     event.target.closest("li").remove();
+    groupsTotal();
   }
 
   if (event.target.classList.contains("despense-delete-button")) {
     let index = event.target.dataset.index;
-    despenses.splice(index, 1);
-    localStorage.setItem("despensesAray", JSON.stringify(despenses));
+    despensesAray.splice(index, 1);
+    localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
     event.target.closest("li").remove();
+    affichTotalDespanses();
   }
   if (event.target.classList.contains("groupe-ajoute-button")) {
     let userFullName = prompt("Enter your full name:");
@@ -303,6 +320,8 @@ main.addEventListener("click", (event) => {
     localStorage.setItem("members", JSON.stringify(members));
   }
 });
+
+
 function formatDate(){
     const date = new Date();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -311,7 +330,3 @@ function formatDate(){
     const formattedDate = `${year}-${month}-${day}`;
     return (formattedDate);
 }
-
-
-
-
