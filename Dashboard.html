@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <header>
+      <nav>
+        <div class="logo">
+          <img class="icon" src="assets/icon/icon.png" alt="" />
+          <h1>Split<span>Mate</span></h1>
+        </div>
+        <div>
+          <button class="button1"><img src="assets/icon/users-alt.png" alt=""></button>
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+        <aside class="links">
+          <button class="link-botton"><a href="index.html">Acceuil</a></button>
+          <button class="link-botton"><a href="groupe.html">Groupes</a></button>
+          <button class="link-botton"><a href="depense.html">Depenses</a></button>
+          <button class="link-botton"><a href="soldes.html">Soldes</a></button>
+          <button class="link-botton"><a href="Dashboard.html">Dashboard</a></button>
+        </aside>
+        <section class="hero-container">
+            <section class="statistiqueDash">
+                <h2>les statestique de program</h2>
+                <p>faire beaucoup de statistique pour les partes souvent:</p>
+                <div class="statistiquePart" id="statistiquePart1">
+                    <!-- <i>Total des dépenses</i> -->
+                    <!-- <span>2 500 DH</span> -->
+
+                </div>
+
+                <div class="statistiquePart" id="statistiquePart2">
+                    <!-- <i>Mes groupes</i>
+                    <span>8</span> -->
+                </div>
+
+                <div class="statistiquePart">
+                    <i>Mes dettes</i>
+                    <span>450 DH</span>
+                </div>
+
+                <div class="statistiquePart">
+                    <i>Mes créances</i>
+                    <span>700 DH</span>
+                </div>
+
+            </section>
+            <section class="groupesDash">
+                <div>
+                    <div>
+                        <h2>les groupes</h2>
+    
+                    </div>
+                    <div>
+                        <select name="devise" id="filterBottunGroupe">
+                            <option value="Tous">Tous</option>
+                            <option value="MAD">MAD</option>
+                            <option value="EUR">€</option>
+                            <option value="USD">$</option>
+                        </select>
+                    </div>
+
+                </div>
+                
+                <ul id="listGroupes">
+                    
+
+
+                </ul>
+
+            </section>
+            <section class="depenseDash">
+                <div>
+                    <div>
+                        <h2>depenser</h2>
+    
+                    </div>
+                    <div>
+                        <select name="categorie" id="filterBottundepense">
+                            <option value="Tous">Tous</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Food">Food</option>
+                            <option value="Hotel">Hotel</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Sante">Santé</option>
+                            <option value="Logement">Logement</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                  
+
+
+                <ul id="listDesponse">
+
+
+
+                </ul>
+
+            </section>
+            
+        </section>
+    </main>
+    <script src="JS/script.js" defer></script>
+</body>
+</html>
