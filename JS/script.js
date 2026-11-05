@@ -89,12 +89,10 @@ function creatDespense() {
   };
   despensesAray.push(despense);
   localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
-  // console.log(despensesAray);
   textInput.value = "";
   inputDate.value = "";
   montantInput.value = "";
   categorieInput.value = "";
-  // payeurInput.value = "";
 }
 
 if (buttonDespense) {
@@ -166,7 +164,6 @@ main.addEventListener("click", (event) => {
       name: userFullName,
       id: groupId,
     };
-    // console.log(member.name);
     if (members.includes(member.name)) return;
     members.push(member);
     localStorage.setItem("members", JSON.stringify(members));
@@ -181,6 +178,7 @@ function formatDate(){
     const formattedDate = `${year}-${month}-${day}`;
     return (formattedDate);
 }
+
 
 
 
