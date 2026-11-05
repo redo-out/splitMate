@@ -7,8 +7,8 @@ let DescriptionGroupes = document.getElementById("description");
 let DeviseGroupe = document.getElementById("Devise");
 let DateGroupe = document.getElementById("data");
 let formGroupe = document.getElementById("formGroupe");
-
 let groupes = JSON.parse(localStorage.getItem("groupes")) || []; //fallback
+
 function creerGroupe(event) {
   event.preventDefault();
   let NomGroupeValue = document.getElementById("nom").value.trim();
@@ -88,13 +88,13 @@ function creatDespense() {
     payeur: payeurInputValue,
   };
   despensesAray.push(despense);
+  console.log(despensesAray); 
   localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
   textInput.value = "";
   inputDate.value = "";
   montantInput.value = "";
   categorieInput.value = "";
 }
-
 if (buttonDespense) {
   buttonDespense.addEventListener("click", creatDespense);
 }
@@ -105,9 +105,143 @@ if (buttonDespense) {
 // dashboard
 // dashboard
 // dashboard
-const despenses = JSON.parse(localStorage.getItem("despensesAray")) || [];
+// dashboard
+
+// filter et affichage des groupes et des depenses:
 const listGroupe = document.getElementById("listGroupes");
 const listDesponse = document.getElementById("listDesponse");
+const filterGroupe = document.getElementById("filterBottunGroupe");
+
+function filtrerGroupesDevise() {
+    listGroupe.innerHTML = "";
+    groupes.forEach((element) => {
+        if (element.devise.includes(filterGroupe.value)) {
+            listGroupe.innerHTML += `
+                <li>
+                    <span>
+                        ${element.nom} ==>
+                        ${element.description} ==>
+                        ${element.devise} ==>
+                        ${element.date}
+                    </span>
+                    <div>
+                        <button class="groupe-delete-button" data-id="${element.id}">
+                            Supprimer
+                        </button>
+
+                        <button class="groupe-ajoute-button" data-id="${element.id}">
+                            Ajouter member
+                        </button>
+                        <button class="groupe-modifier-button" data-id="${element.id}">
+                            Modifier
+                        </button>
+                    </div>
+                </li>
+            `;
+        }else if (filterGroupe.value === "Tous") {
+            listGroupe.innerHTML += `
+                <li>
+                    <span>
+                        ${element.nom} ==>
+                        ${element.description} ==>
+                        ${element.devise} ==>
+                        ${element.date}
+                    </span>
+
+                    <div>
+                        <button class="groupe-delete-button" data-id="${element.id}">
+                            Supprimer
+                        </button>
+
+                        <button class="groupe-ajoute-button" data-id="${element.id}">
+                            Ajouter member
+                        </button>
+                        <button class="groupe-modifier-button" data-id="${element.id}">
+                            Modifier
+                        </button>
+                    </div>
+                </li>
+            `;
+        }
+    });
+};
+if(filterGroupe){
+    filterGroupe.addEventListener("change", filtrerGroupesDevise);
+    filtrerGroupesDevise();
+};
+let filterDespense = document.getElementById("filterBottundepense");
+function filtrerDespenseCategorie() {
+    listDesponse.innerHTML = "";
+    despensesAray.forEach((element) => {
+        if (element.categorie.includes(filterDespense.value)) {
+            listDesponse.innerHTML += `
+                <li style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>
+                        ${element.name} ==>
+                        ${element.montant} DH ==>
+                        ${element.date} ==>
+                        ${element.categorie} ==>
+                        ${element.payeur}
+                    </span>
+
+                    <button class="despense-delete-button" data-id="${element.id}">
+                        Supprimer
+                    </button>
+                    <button class="despense-modifier-button" data-id="${element.id}">
+                        Modifier
+                    </button>
+                </li>
+            `;
+        } else if (filterDespense.value === "Tous") {
+
+            listDesponse.innerHTML += `
+                <li style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>
+                        ${element.name} ==>
+                        ${element.montant} DH ==>
+                        ${element.date} ==>
+                        ${element.categorie} ==>
+                        ${element.payeur}
+                    </span>
+
+                    <button class="despense-delete-button" data-id="${element.id}">
+                        Supprimer
+                    </button>
+                    <button class="despense-modifier-button" data-id="${element.id}">
+                        Modifier
+                    </button>
+                </li>
+            `;
+        }
+    });
+};
+if (filterDespense) {
+    filterDespense.addEventListener("change", filtrerDespenseCategorie);
+    filtrerDespenseCategorie();
+}
+let modifierGroupe = document.getElementById("modifierGroupe");
+if (modifierGroupe) {
+  filterDespense.addEventListener("change", filtrerDespenseCategorie);
+  filtrerDespenseCategorie();
+};
+if (listGroupe) {
+    listGroupe.addEventListener("click", (event) => {
+
+        let modifeBtn = event.target.closest(".groupe-modifier-button");
+
+        if (modifeBtn) {
+
+            let id = Number(modifeBtn.dataset.id);
+
+            let groupe = groupes.find(element => element.id === id);
+
+            if (groupe) {
+                localStorage.setItem("groupeModifier", JSON.stringify(groupe));
+                window.location.href = "groupe.html";
+            }
+        }
+    });
+};
 listGroupe.innerHTML = "";
 listDesponse.innerHTML = "";
 groupes.forEach((element, index) => {
@@ -169,7 +303,6 @@ main.addEventListener("click", (event) => {
     localStorage.setItem("members", JSON.stringify(members));
   }
 });
-
 function formatDate(){
     const date = new Date();
     const month = String(date.getMonth() + 1).padStart(2, "0");
