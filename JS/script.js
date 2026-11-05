@@ -26,7 +26,7 @@ function creerGroupe(event) {
   ) {
     return;
   }
-  const groupe = {
+  let groupe = {
     id: Date.now(),
     nom: NomGroupeValue,
     description: DescriptionGroupesValue,
@@ -89,16 +89,19 @@ function creatDespense() {
   };
   despensesAray.push(despense);
   console.log(despensesAray);
+
   
   localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
-  localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
   // console.log(despensesAray);
+  calculeMembreSold();
+   
 
   textInput.value = "";
   inputDate.value = "";
   montantInput.value = "";
   categorieInput.value = "";
   // payeurInput.value = "";
+
 }
 
 if (buttonDespense) {
@@ -233,9 +236,10 @@ function filtrerDespenseCategorie() {
                     <button class="despense-delete-button" data-id="${element.id}">
                         Supprimer
                     </button>
-                    <button class="despense-modifier-button" data-id="${element.id}">
+                     <button class="despense-modifier-button" data-id="${element.id}">
                         Modifier
                     </button>
+
                 </li>
             `;
         }
@@ -249,13 +253,13 @@ if (filterDespense) {
 
 
 
-
 let modifierGroupe = document.getElementById("modifierGroupe");
 if (modifierGroupe) {
   filterDespense.addEventListener("change", filtrerDespenseCategorie);
   filtrerDespenseCategorie();
 };
 if (listGroupe) {
+    
     listGroupe.addEventListener("click", (event) => {
 
         let modifeBtn = event.target.closest(".groupe-modifier-button");
@@ -273,38 +277,55 @@ if (listGroupe) {
         }
     });
 };
-listGroupe.innerHTML = "";
-listDesponse.innerHTML = "";
-groupes.forEach((element, index) => {
-  listGroupe.innerHTML += `
-        <li style="display: flex; justify-content: space-between; align-items: center; data-index="${index}">
-            <span>
-                ${element.nom} ==>
-                ${element.description} ==>
-                ${element.devise} ==>
-                ${element.date}
-            </span>
-            <div>
-            <button class="groupe-delete-button" data-index="${index}">Supprimer</button>
-            <button class="groupe-ajoute-button" data-id="${element.id}">Ajouter member</button>
-            </div>
-        </li>
-    `;
-});
-despenses.forEach((element, index) => {
-  listDesponse.innerHTML += `
-        <li style="display: flex; justify-content: space-between; align-items: center;">
-            <span>
-                ${element.name} ==>
-                ${element.montant} DH ==>
-                ${element.date} ==>
-                ${element.categorie} ==>
-                ${element.payeur}
-            </span>
-            <button class="despense-delete-button" data-index="${index}">Supprimer</button>
-        </li>
-    `;
-});
+let groupeModifier = JSON.parse(localStorage.getItem("groupeModifier"));
+
+if (groupeModifier) {
+
+    NomGroupe.value = groupeModifier.nom;
+    DescriptionGroupes.value = groupeModifier.description;
+    DeviseGroupe.value = groupeModifier.devise;
+    DateGroupe.value = groupeModifier.date;
+
+}
+function creerGroupe(event) {
+
+    event.preventDefault();
+
+    if (groupeModifier) {
+
+        let index = groupes.findIndex(element => element.id === groupeModifier.id);
+
+        if (index !== -1) {
+            groupes[index].nom = NomGroupe.value;
+            groupes[index].description = DescriptionGroupes.value;
+            groupes[index].devise = DeviseGroupe.value;
+            groupes[index].date = DateGroupe.value;
+
+        }
+
+        localStorage.removeItem("groupeModifier");
+
+    } else {
+
+        // Création d'un nouveau groupe
+        let nouveauGroupe = {
+            id: Date.now(),
+            nom: NomGroupe.value,
+            description: DescriptionGroupes.value,
+            devise: DeviseGroupe.value,
+            date: DateGroupe.value,
+            membres: []
+        };
+
+        groupes.push(nouveauGroupe);
+    }
+
+    localStorage.setItem("groupes", JSON.stringify(groupes));
+
+    formGroupe.reset();
+};
+
+
 let main = document.querySelector("main");
 let members = JSON.parse(localStorage.getItem("members")) || [];
 main.addEventListener("click", (event) => {
@@ -317,8 +338,8 @@ main.addEventListener("click", (event) => {
 
   if (event.target.classList.contains("despense-delete-button")) {
     let index = event.target.dataset.index;
-    despenses.splice(index, 1);
-    localStorage.setItem("despensesAray", JSON.stringify(despenses));
+    despensesAray.splice(index, 1);
+    localStorage.setItem("despensesAray", JSON.stringify(despensesAray));
     event.target.closest("li").remove();
   }
   if (event.target.classList.contains("groupe-ajoute-button")) {
@@ -326,13 +347,16 @@ main.addEventListener("click", (event) => {
     if (!userFullName) return;
     let groupId = +(event.target.dataset.id);
     let member = {
-      name: userFullName,
-      id: groupId,
+        soldPlus: 0,
+        soldMoin: 0,
+        name: userFullName,
+        id: groupId,
     };
-    // console.log(member.name);
+    console.log(member);
     if (members.includes(member.name)) return;
     members.push(member);
     localStorage.setItem("members", JSON.stringify(members));
+   
   }
 });
 
@@ -344,6 +368,13 @@ function formatDate(){
     const year = date.getFullYear();
     const formattedDate = `${year}-${month}-${day}`;
     return (formattedDate);
+}
+function calculeMembreSold(){
+    despensesAray.forEach(element => {
+        console.log(element);
+    });
+    
+
 }
 
 
